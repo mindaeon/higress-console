@@ -1,5 +1,5 @@
-import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Space, Switch, Table } from 'antd';
+import { Trash2 } from 'lucide-react';
 import { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './index.module.css';
@@ -147,7 +147,7 @@ const HeaderModify = forwardRef((props, ref) => {
           return (
             <>
               <Button type="link" block onClick={() => remove(field.name)}>
-                <DeleteOutlined />
+                <Trash2 size={16} />
               </Button>
             </>
           );

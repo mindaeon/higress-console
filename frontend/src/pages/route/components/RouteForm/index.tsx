@@ -5,7 +5,8 @@ import { DEFAULT_DOMAIN, Domain } from '@/interfaces/domain';
 import { upstreamServiceToString } from '@/interfaces/route';
 import { getGatewayDomains, getGatewayServices } from '@/services';
 import { getConsumers } from '@/services/consumer';
-import { QuestionCircleOutlined, RedoOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
+import { CircleHelp } from 'lucide-react';
 import { useRequest } from 'ahooks';
 import { Checkbox, Form, Input, Select, Switch, Tooltip, Button } from 'antd';
 import { uniqueId } from "lodash";
@@ -318,7 +319,7 @@ const RouteForm: React.FC = forwardRef((props, ref) => {
               {t('route.routeForm.customConfigs')}
               <Tooltip title={t('route.routeForm.customConfigsTip')}>
                 <a href={`https://higress.io/${officialSiteLang}/docs/user/annotation-use-case`} target="_blank">
-                  <QuestionCircleOutlined className="ant-form-item-tooltip" />
+                  <CircleHelp className="ant-form-item-tooltip" size={16} />
                 </a>
               </Tooltip>
             </>

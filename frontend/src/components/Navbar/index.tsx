@@ -1,5 +1,5 @@
 import i18n, { lngs } from "@/i18n";
-import { GithubOutlined } from "@ant-design/icons";
+import { Github } from "lucide-react";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./index.module.css";
@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       })}
       <li>
         <a href="https://github.com/alibaba/higress" target="_blank">
-          <GithubOutlined style={{ fontSize: "16px" }} />
+          <Github size={16} />
         </a>
       </li>
     </ul>

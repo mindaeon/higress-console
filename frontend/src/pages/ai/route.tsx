@@ -1,7 +1,8 @@
 import { AiRoute, AiUpstream } from '@/interfaces/ai-route';
 import { RoutePredicate } from '@/interfaces/route';
 import { addAiRoute, deleteAiRoute, getAiRoutes, updateAiRoute } from '@/services/ai-route';
-import { ArrowRightOutlined, ExclamationCircleOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
+import { ArrowRight, TriangleAlert, Search } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Drawer, Form, FormProps, Input, Modal, Row, Space, Table } from 'antd';
@@ -81,7 +82,7 @@ const AiRouteList: React.FC = () => {
         if (record.fallbackUpstream?.provider) {
           elements.push((
             <>
-              <ArrowRightOutlined style={{ marginRight: '5px' }} />
+              <ArrowRight style={{ marginRight: '5px' }} size={16} />
               {record.fallbackUpstream.provider}
             </>
           ))
@@ -293,24 +294,18 @@ const AiRouteList: React.FC = () => {
         }}
       >
         <Row gutter={24}>
-          <Col span={14}>
-            <Form.Item name="searchVal">
-              <Input
-                allowClear
-                placeholder={t('aiRoute.searchPlaceholder') || ''}
-                prefix={<SearchOutlined />}
-                onChange={onSearch}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={10} style={{ textAlign: 'right' }}>
-            <Button
-              style={{ margin: '0 8px' }}
-              type="primary"
-              onClick={onShowDrawer}
-            >
-              {t('aiRoute.create')}
+          <Col span={4}>
+            <Button type="primary" onClick={onShowDrawer}>
+              {t('aiRoute.createAiRoute')}
             </Button>
+          </Col>
+          <Col span={20} style={{ textAlign: 'right' }}>
+            <Input.Search
+              style={{ width: 350, marginRight: '0.5rem' }}
+              placeholder={t('aiRoute.searchPlaceholder') || ''}
+              prefix={<Search size={16} />}
+              onChange={onSearch}
+            />
             <Button icon={<RedoOutlined />} onClick={refresh} />
           </Col>
         </Row>
@@ -356,7 +351,7 @@ const AiRouteList: React.FC = () => {
         </SyntaxHighlighter>
       </Modal>
       <Modal
-        title={<div><ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />{t('misc.delete')}</div>}
+        title={<div><TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />{t('misc.delete')}</div>}
         open={openModal}
         onOk={handleModalOk}
         confirmLoading={confirmLoading}

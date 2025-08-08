@@ -1,5 +1,5 @@
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Table } from 'antd';
+import { Trash2, Plus } from 'lucide-react';
 import type { FormInstance } from 'antd/es/form';
 import { uniqueId } from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -146,7 +146,7 @@ const FactorGroup: React.FC = ({ value, onChange }) => {
       render: (_, record: { uid: number }) =>
         (dataSource.length >= 1 ? (
           <div onClick={() => handleDelete(record.uid)}>
-            <DeleteOutlined />
+            <Trash2 size={16} />
           </div>
         ) : null),
     },
@@ -216,7 +216,7 @@ const FactorGroup: React.FC = ({ value, onChange }) => {
         pagination={false}
       />
       <Button onClick={handleAdd} type="link">
-        <PlusOutlined />
+        <Plus size={16} />
         {t('route.factorGroup.parameter')}
       </Button>
     </div>

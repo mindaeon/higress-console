@@ -5,7 +5,7 @@ import { ServiceProtocols, ServiceSource, ServiceSourceFormProps, ServiceSourceT
 import { addServiceSource, deleteServiceSource, getServiceSources, updateServiceSource } from '@/services/service-source';
 import store from '@/store';
 import { isInternalResource } from '@/utils';
-import { ExclamationCircleOutlined, RedoOutlined } from '@ant-design/icons';
+import { TriangleAlert, RotateCcw } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Drawer, Form, Modal, Row, Space, Table } from 'antd';
@@ -200,7 +200,7 @@ const SourceList: React.FC = () => {
           </Col>
           <Col span={20} style={{ textAlign: 'right' }}>
             <Button
-              icon={<RedoOutlined />}
+              children={<RotateCcw size={16} />}
               onClick={refresh}
             />
           </Col>
@@ -230,7 +230,7 @@ const SourceList: React.FC = () => {
         <SourceForm ref={formRef} value={currentServiceSource} />
       </Drawer>
       <Modal
-        title={<div><ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />{t('misc.delete')}</div>}
+        title={<div><TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />{t('misc.delete')}</div>}
         open={openModal}
         onOk={handleModalOk}
         confirmLoading={confirmLoading}

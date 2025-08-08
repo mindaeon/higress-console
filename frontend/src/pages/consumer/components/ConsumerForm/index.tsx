@@ -1,8 +1,8 @@
 import { CredentialType } from '@/interfaces/consumer';
-import { MinusCircleOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Space, Tabs } from 'antd';
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MinusCircle, Plus, RotateCw } from 'lucide-react';
 
 const ConsumerForm: React.FC = forwardRef((props, ref) => {
   const { t } = useTranslation();
@@ -137,7 +137,7 @@ const ConsumerForm: React.FC = forwardRef((props, ref) => {
                               type="dashed"
                               disabled={!(fields.length > 1)}
                               onClick={() => remove(field.name)}
-                              icon={<MinusCircleOutlined />}
+                              icon={<MinusCircle size={16} />}
                             />
                           </div>
                         </Form.Item>
@@ -148,7 +148,7 @@ const ConsumerForm: React.FC = forwardRef((props, ref) => {
                         <Button
                           type="dashed"
                           onClick={() => add()}
-                          icon={<PlusOutlined />}
+                          icon={<Plus size={16} />}
                         />
                         <Form.ErrorList errors={errors} />
                       </Form.Item>

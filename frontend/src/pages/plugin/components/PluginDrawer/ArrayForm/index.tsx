@@ -1,5 +1,5 @@
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Table } from 'antd';
+import { Trash2, Plus } from 'lucide-react';
 import type { FormInstance } from 'antd/es/form';
 import { uniqueId } from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -218,7 +218,7 @@ const ArrayForm: React.FC = ({ array, value, onChange }) => {
     render: (_, record: { uid: number }) =>
       (dataSource.length >= 1 ? (
         <div onClick={() => handleDelete(record.uid)}>
-          <DeleteOutlined />
+          <Trash2 size={16} />
         </div>
       ) : null),
   });

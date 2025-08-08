@@ -15,7 +15,7 @@ import {
   Empty,
   Modal,
 } from 'antd';
-import { EditOutlined, DeleteOutlined, QuestionCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Pencil, Trash2, HelpCircle, Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getMcpServer, createOrUpdateMcpServer, deleteMcpServer, listMcpConsumers } from '@/services/mcp';
 import { getGatewayDomains } from '@/services/domain';
@@ -218,10 +218,10 @@ const MCPDetailPage: React.FC = () => {
         onBack: () => navigate('/mcp/list'),
         extra: (
           <Space>
-            <Button type="primary" icon={<EditOutlined />} onClick={() => setEditDrawerVisible(true)}>
+            <Button type="primary" icon={<Pencil size={16} />} onClick={() => setEditDrawerVisible(true)}>
               {t('mcp.detail.edit')}
             </Button>
-            <Button danger icon={<DeleteOutlined />} onClick={handleDeleteClick}>
+            <Button danger icon={<Trash2 size={16} />} onClick={handleDeleteClick}>
               {t('mcp.detail.delete')}
             </Button>
           </Space>
@@ -294,7 +294,7 @@ const MCPDetailPage: React.FC = () => {
                   extra={
                     <Button
                       type="primary"
-                      icon={<EditOutlined />}
+                      icon={<Pencil size={16} />}
                       onClick={() => setEditToolVisible(true)}
                       disabled={mcpData?.type !== SERVICE_TYPE.OPENAPI}
                     >
@@ -482,7 +482,7 @@ const MCPDetailPage: React.FC = () => {
                         <Space>
                           <span>API Key</span>
                           <Tooltip title={t('mcp.detail.apiKeyTooltip')}>
-                            <QuestionCircleOutlined style={{ color: '#888' }} />
+                            <HelpCircle size={16} style={{ color: '#888' }} />
                           </Tooltip>
                         </Space>
                       </Descriptions.Item>
@@ -491,7 +491,7 @@ const MCPDetailPage: React.FC = () => {
                 </Card>
                 <Card title={t('mcp.detail.authorizedConsumers')} bordered style={{ marginTop: 16 }}>
                   <ConsumerTable ref={consumerTableRef} authEnabled={authEnabled}>
-                    <Button type="primary" icon={<PlusOutlined />} onClick={() => setAddConsumerAuthVisible(true)}>
+                    <Button type="primary" icon={<Plus size={16} />} onClick={() => setAddConsumerAuthVisible(true)}>
                       {t('mcp.detail.add')}
                     </Button>
                   </ConsumerTable>

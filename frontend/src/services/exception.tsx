@@ -1,7 +1,7 @@
-import { RightOutlined } from '@ant-design/icons';
 import { get, isNil } from 'lodash';
 import { useState } from "react";
 import { Trans, useTranslation } from 'react-i18next';
+import { ChevronRight } from 'lucide-react';
 
 export const ErrorComp = ({ content, options, code }) => {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ export const ErrorComp = ({ content, options, code }) => {
                 错误详情（错误码：<span style={{ color: '#0077cc' }}>{{ code: !isNil(code) ? code : 'N/A' }}</span>）
               </Trans>
             </span>
-            <RightOutlined
+            <ChevronRight
               onClick={() => setIsShow(!isShow)}
               style={{
                 transform: isShow ? 'rotate(90deg)' : 'rotate(0deg)',
@@ -26,6 +26,7 @@ export const ErrorComp = ({ content, options, code }) => {
                 transition: 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)',
                 color: '#999',
               }}
+              size={14}
             />
           </div>
         )

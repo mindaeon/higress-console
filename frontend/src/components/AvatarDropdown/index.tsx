@@ -1,11 +1,11 @@
 import { logout } from '@/services';
 import store from '@/store';
-import { LockOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown } from 'antd';
 import { definePageConfig, history } from 'ice';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Lock, LogOut } from 'lucide-react';
 import styles from './index.module.css';
 
 interface AvatarDropdownProps {
@@ -41,14 +41,14 @@ const AvatarDropdown: React.FC<AvatarDropdownProps> = ({ name, avatar }) => {
       {
         key: 'changePassword',
         label: t('user.changePassword.title'),
-        icon: <LockOutlined />,
+        icon: <Lock size={16} />,
         onClick: onChangePasswordClick,
         className: styles.menu,
       },
       {
         key: 'logout',
         label: t('misc.logout'),
-        icon: <LogoutOutlined />,
+        icon: <LogOut size={16} />,
         onClick: onLogoutClick,
         className: styles.menu,
       },

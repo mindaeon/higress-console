@@ -1,6 +1,7 @@
 import { LlmProvider } from '@/interfaces/llm-provider';
 import { addLlmProvider, deleteLlmProvider, getLlmProviders, updateLlmProvider } from '@/services/llm-provider';
-import { ExclamationCircleOutlined, EyeInvisibleTwoTone, EyeTwoTone, RedoOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
+import { Eye, EyeOff, TriangleAlert } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Drawer, Form, Modal, Row, Space, Table, Typography } from 'antd';
@@ -44,7 +45,7 @@ const EllipsisMiddle: React.FC = (params: { value: String }) => {
         style={{ cursor: 'pointer', marginLeft: '2px' }}
         onClick={() => setIsHidden(!isHidden)}
       >
-        {isHidden ? <EyeTwoTone /> : <EyeInvisibleTwoTone />}
+        {isHidden ? <Eye size={16} /> : <EyeOff size={16} />}
       </span>
     </div>
   );
@@ -232,7 +233,7 @@ const LlmProviderList: React.FC = () => {
           </Col>
           <Col span={20} style={{ textAlign: 'right' }}>
             <Button
-              icon={<RedoOutlined />}
+              children={<RotateCcw size={16} />}
               onClick={refresh}
             />
           </Col>
@@ -262,7 +263,7 @@ const LlmProviderList: React.FC = () => {
         <ProviderForm ref={formRef} value={currentLlmProvider} />
       </Drawer>
       <Modal
-        title={<div><ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />{t('misc.delete')}</div>}
+        title={<div><TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />{t('misc.delete')}</div>}
         open={openModal}
         onOk={handleModalOk}
         confirmLoading={confirmLoading}

@@ -4,7 +4,7 @@ import { SYSTEM_INITIALIZED } from '@/interfaces/config';
 import { UserInfo } from '@/interfaces/system';
 import { initialize } from '@/services/system';
 import store from '@/store';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { User, Lock } from 'lucide-react';
 import { LoginForm, ProFormText } from '@ant-design/pro-form';
 import { message } from 'antd';
 import { useNavigate } from 'ice';
@@ -56,13 +56,11 @@ const Init: React.FC = () => {
         onFinish={async (values) => {
           await handleSubmit(values as UserInfo);
         }}
-        submitter={
-          {
-            searchConfig: {
-              submitText: t('misc.submit'),
-            },
-          }
-        }
+        submitter={{
+          searchConfig: {
+            submitText: t('misc.submit'),
+          },
+        }}
         formRef={formRef}
       >
         <h3 style={{ textAlign: 'center', marginBottom: '1rem' }}>
@@ -72,7 +70,7 @@ const Init: React.FC = () => {
           name="name"
           fieldProps={{
             size: 'large',
-            prefix: <UserOutlined className={'prefixIcon'} />,
+            prefix: <User size={16} className={'prefixIcon'} />,
           }}
           placeholder={t('init.usernamePlaceholder') || ''}
           initialValue="admin"
@@ -87,7 +85,7 @@ const Init: React.FC = () => {
           name="password"
           fieldProps={{
             size: 'large',
-            prefix: <LockOutlined className={'prefixIcon'} />,
+            prefix: <Lock size={16} className={'prefixIcon'} />,
           }}
           placeholder={t('init.passwordPlaceholder') || ''}
           rules={[
@@ -101,7 +99,7 @@ const Init: React.FC = () => {
           name="confirmPassword"
           fieldProps={{
             size: 'large',
-            prefix: <LockOutlined className={'prefixIcon'} />,
+            prefix: <Lock size={16} className={'prefixIcon'} />,
           }}
           placeholder={t('init.confirmPasswordPlaceholder') || ''}
           rules={[

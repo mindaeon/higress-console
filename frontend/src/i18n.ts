@@ -4,6 +4,7 @@ import HttpApi from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 import translation_en from "@/locales/en-US/translation.json";
 import translation_zh from "@/locales/zh-CN/translation.json";
+import translation_tr from "@/locales/tr-TR/translation.json";
 
 i18n
   .use(HttpApi)
@@ -22,6 +23,9 @@ i18n
       zh: {
         translation: translation_zh,
       },
+      tr: {
+        translation: translation_tr,
+      },
     },
   });
 
@@ -39,5 +43,11 @@ export const lngs = [
     nativeName: "English (United States)",
     switchText: "En",
     officialSiteCode: "en-us",
+  },
+  {
+    code: "tr-TR",
+    nativeName: "Türkçe",
+    switchText: "TR",
+    officialSiteCode: "tr-tr",
   },
 ];
