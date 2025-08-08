@@ -1,4 +1,4 @@
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { MinusCircle, Plus } from 'lucide-react';
 import { AutoComplete, Button, Empty, Form, Input, InputNumber, Modal, Select, Switch, Typography } from 'antd';
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -294,7 +294,7 @@ const ProviderForm: React.FC = forwardRef((props: { value: any }, ref) => {
                 <Button
                   type="dashed"
                   onClick={() => add()}
-                  icon={<PlusOutlined />}
+                  icon={<Plus size={16} />}
                 />
                 <Form.ErrorList errors={errors} />
                 <div style={{ marginTop: '1rem' }}>
@@ -400,7 +400,7 @@ const ProviderForm: React.FC = forwardRef((props: { value: any }, ref) => {
                               type="dashed"
                               disabled={!(fields.length > 1)}
                               onClick={() => remove(field.name)}
-                              icon={<MinusCircleOutlined />}
+                              icon={<MinusCircle size={16} />}
                             />
                           </div>
                         </Form.Item>

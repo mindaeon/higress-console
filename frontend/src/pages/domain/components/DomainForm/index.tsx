@@ -2,11 +2,11 @@ import { OptionItem } from '@/interfaces/common';
 import { DEFAULT_DOMAIN, EnableHttpsValue, Protocol } from '@/interfaces/domain';
 import { TlsCertificate } from '@/interfaces/tls-certificate';
 import { getTlsCertificates } from '@/services';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import { Checkbox, Form, Input, Select, Tooltip } from 'antd';
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CircleHelp } from 'lucide-react';
 
 const { Option } = Select;
 
@@ -144,7 +144,7 @@ const DomainForm: React.FC = forwardRef((props, ref) => {
                       <>
                         <span style={{ marginRight: 4 }}>{t('domain.domainForm.mustHttps')}</span>
                         <Tooltip title={t('domain.domainForm.mustHttpsCheckboxTooltip')}>
-                          <QuestionCircleOutlined style={{ color: 'rgba(0, 0, 0, 0.45)' }} />
+                          <CircleHelp style={{ color: 'rgba(0, 0, 0, 0.45)' }} size={16} />
                         </Tooltip>
                       </>
                     ),

@@ -10,7 +10,7 @@ import { getMcpServer } from '@/services/mcp';
 import { history } from 'ice';
 import { getConsumers } from '@/services/consumer';
 import { HistoryButton } from '@/pages/ai/components/RouteForm/Components';
-import { RedoOutlined } from '@ant-design/icons';
+import { RotateCcw } from 'lucide-react';
 
 interface McpFormDrawerProps {
   visible: boolean;
@@ -423,7 +423,7 @@ const McpFormDrawer: React.FC<McpFormDrawerProps> = ({ visible, mode, name, onCl
                 <Button
                   style={{ marginLeft: 8 }}
                   onClick={() => getConsumers().then((res) => setConsumerList(res || []))}
-                  icon={<RedoOutlined />}
+                  children={<RotateCcw size={16} />}
                 />
               </div>
             </Form.Item>

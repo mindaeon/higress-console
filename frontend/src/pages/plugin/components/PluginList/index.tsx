@@ -2,7 +2,6 @@ import i18n from '@/i18n';
 import { fetchPluginsByRoute } from '@/interfaces/route';
 import { WasmPluginData } from '@/interfaces/wasm-plugin';
 import { getDomainPluginInstances, getGatewayRouteDetail, getWasmPlugins } from '@/services';
-import { EllipsisOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import { Avatar, Button, Card, Col, Dropdown, Popconfirm, Typography, Tag } from 'antd';
 import { useSearchParams } from 'ice';
@@ -11,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { getI18nValue, QueryType } from '../../utils';
 import { BUILTIN_ROUTE_PLUGIN_LIST, DEFAULT_PLUGIN_IMG } from './constant';
 import PluginCategory from '../PluginCategory';
+import { MoreHorizontal } from 'lucide-react';
 
 const { Paragraph } = Typography;
 const { Meta } = Card;
@@ -150,7 +150,7 @@ const PluginList = forwardRef((props: Props, ref) => {
           items,
         }}
       >
-        <EllipsisOutlined />
+        <MoreHorizontal />
       </Dropdown>
     )
   };

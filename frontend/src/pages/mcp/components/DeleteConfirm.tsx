@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { TriangleAlert } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 
 interface DeleteConfirmProps {
@@ -26,7 +26,7 @@ const DeleteConfirm: React.FC<DeleteConfirmProps> = ({
     <Modal
       title={
         <div>
-          <ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />
+          <TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />
           {t('misc.delete')}
         </div>
       }

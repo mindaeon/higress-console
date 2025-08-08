@@ -14,7 +14,8 @@ import { addGatewayRoute, deleteGatewayRoute, getGatewayRoutes, getWasmPlugins, 
 import store from '@/store';
 import switches from '@/switches';
 import { isInternalResource } from '@/utils';
-import { ExclamationCircleOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
+import { TriangleAlert, Search } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Alert, Button, Col, Drawer, Form, Input, message, Modal, Row, Space, Table, Typography } from 'antd';
@@ -349,7 +350,7 @@ const RouteList: React.FC = () => {
               <Input
                 allowClear
                 placeholder={t('route.routeSearchPlaceholder') || ''}
-                prefix={<SearchOutlined />}
+                prefix={<Search size={16} />}
                 onChange={onSearchChange}
               />
             </Form.Item>
@@ -363,7 +364,7 @@ const RouteList: React.FC = () => {
             >
               {t('route.createRoute')}
             </Button>
-            <Button icon={<RedoOutlined />} onClick={refresh} />
+            <Button onClick={refresh}><RotateCcw size={16} /></Button>
           </Col>
         </Row>
       </Form>
@@ -418,7 +419,7 @@ const RouteList: React.FC = () => {
       <Modal
         title={
           <div>
-            <ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />
+            <TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />
             {t('misc.delete')}
           </div>
         }

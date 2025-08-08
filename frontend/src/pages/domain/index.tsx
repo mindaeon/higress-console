@@ -9,7 +9,7 @@ import {
   getWasmPlugins,
   getDomainPluginInstances
 } from '@/services';
-import { ExclamationCircleOutlined, RedoOutlined } from '@ant-design/icons';
+import { TriangleAlert, RotateCcw } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import {Button, Col, Drawer, Form, message, Modal, Row, Space, Table} from 'antd';
@@ -258,7 +258,7 @@ const DomainList: React.FC = () => {
             </Button>
           </Col>
           <Col span={20} style={{ textAlign: 'right' }}>
-            <Button icon={<RedoOutlined />} onClick={refresh} />
+            <Button onClick={refresh}><RotateCcw size={16} /></Button>
           </Col>
         </Row>
       </Form>
@@ -309,7 +309,7 @@ const DomainList: React.FC = () => {
       <Modal
         title={
           <div>
-            <ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />
+            <TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />
             {t('misc.delete')}
           </div>
         }

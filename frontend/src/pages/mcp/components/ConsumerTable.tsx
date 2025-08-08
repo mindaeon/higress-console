@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import { Table, Button, Space, message, Input, Form, Row, Col } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Plus, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { listMcpConsumers, removeMcpConsumers } from '@/services/mcp';
 import HighSearch from '@/components/HighSearch';

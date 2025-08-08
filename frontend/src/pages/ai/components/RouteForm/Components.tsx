@@ -1,12 +1,12 @@
 import { MatchType } from '@/interfaces/route';
-import { FormOutlined, MinusCircleOutlined, PlusOutlined, RedoOutlined } from '@ant-design/icons';
 import { AutoComplete, Button, Empty, Form, Input, Popover, Select } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MinusCircle, Plus, RotateCcw } from 'lucide-react';
 import { modelMapping2String, string2ModelMapping } from './util';
 
 // 刷新按钮
-const RedoOutlinedBtn = (props) => {
+export const RedoOutlinedBtn = (props) => {
   const { getList } = props;
 
   const handleClick = async () => {
@@ -18,14 +18,14 @@ const RedoOutlinedBtn = (props) => {
       <Button
         onClick={handleClick}
         disabled={getList && getList.loading}
-        icon={<RedoOutlined spin={getList && getList.loading} />}
+        children={<RotateCcw size={16} />}
       />
     </Form.Item>
   )
 };
 
 // 跳转按钮
-const HistoryButton = (props) => {
+export const HistoryButton = (props) => {
   const { text = '', path = '' } = props;
   return (
     <a href={path} target="_blank">{text}</a>
@@ -33,7 +33,7 @@ const HistoryButton = (props) => {
 };
 
 // 模型映射编辑器
-const ModelMappingEditor = (props) => {
+export const ModelMappingEditor = (props) => {
   const { t } = useTranslation();
   const { value, style, options, onChange } = props;
   const [form] = Form.useForm();
@@ -188,7 +188,7 @@ const ModelMappingEditor = (props) => {
                               </Form.Item>
                             </td>
                             <td className="ant-table-cell">
-                              <MinusCircleOutlined onClick={() => remove(name)} />
+                              <MinusCircle onClick={() => remove(name)} size={16} />
                             </td>
                           </tr>
                         )) || (
@@ -204,7 +204,7 @@ const ModelMappingEditor = (props) => {
                 </div>
               </div>
               <div>
-                <Button type="dashed" block icon={<PlusOutlined />} onClick={() => add()}>{t("aiRoute.routeForm.modelMapping.add")}</Button>
+                <Button type="dashed" block icon={<Plus size={16} />} onClick={() => add()}>{t("aiRoute.routeForm.modelMapping.add")}</Button>
               </div>
             </>
           )}
@@ -238,23 +238,12 @@ const ModelMappingEditor = (props) => {
         filterOption={(inputValue, option: any) => {
           return option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
         }}
-      >
-        <Input />
-      </AutoComplete>
-      <Popover
-        trigger="click"
-        content={popoverContent}
-        open={popoverOpen}
-        onOpenChange={onPopoverOpenChange}
-      >
-        <Button icon={<FormOutlined />} />
+      />
+      <Popover title={t('aiRoute.routeForm.modelMapping.editorTitle')} content={popoverContent} trigger="click" open={popoverOpen} onOpenChange={onPopoverOpenChange}>
+        <Button style={{ marginLeft: '0.5rem' }}>{t('misc.edit')}</Button>
       </Popover>
     </div>
-  );
-}
-
-export {
-  HistoryButton,
-  ModelMappingEditor,
-  RedoOutlinedBtn,
+  )
 };
+
+

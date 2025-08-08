@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Table, Space, Popconfirm, message, Form, Input, Row, Col, Select, Modal } from 'antd';
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Plus, TriangleAlert } from 'lucide-react';
 import { McpServer } from '@/interfaces/mcp';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useTranslation } from 'react-i18next';

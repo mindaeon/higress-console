@@ -1,13 +1,12 @@
 /* eslint-disable */
 // @ts-nocheck
-import { TlsCertificate, TlsCertificateResponse } from '@/interfaces/tls-certificate';
 import { addTlsCertificate, deleteTlsCertificate, getTlsCertificates, updateTlsCertificate } from '@/services';
-import { ExclamationCircleOutlined, RedoOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Drawer, Form, Modal, Row, Space, Table, Tooltip } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
+import { TriangleAlert, RotateCcw } from 'lucide-react';
 import TlsCertificateForm from './components/TlsCertificateForm';
 
 const TlsCertificateList: React.FC = () => {
@@ -24,22 +23,13 @@ const TlsCertificateList: React.FC = () => {
       title: t('tlsCertificate.columns.domains'),
       dataIndex: 'domains',
       key: 'domains',
-      ellipsis: { showTitle: false },
-      render: (value) => (<Tooltip placement="topLeft" title={value}>
-        {value}
-      </Tooltip> || '-'),
+      ellipsis: true,
     },
     {
-      title: t('tlsCertificate.columns.validityStart'),
-      dataIndex: 'validityStart',
-      key: 'validityStart',
-      render: (value) => (value || '-'),
-    },
-    {
-      title: t('tlsCertificate.columns.validityEnd'),
-      dataIndex: 'validityEnd',
-      key: 'validityEnd',
-      render: (value) => (value || '-'),
+      title: t('tlsCertificate.columns.expireAt'),
+      dataIndex: 'expireAt',
+      key: 'expireAt',
+      ellipsis: true,
     },
     {
       title: t('tlsCertificate.columns.action'),
@@ -58,16 +48,15 @@ const TlsCertificateList: React.FC = () => {
 
   const [form] = Form.useForm();
   const formRef = useRef(null);
-  const [dataSource, setDataSource] = useState<TlsCertificate[]>([]);
-  const [currentTlsCertificate, setCurrentTlsCertificate] = useState<TlsCertificate | null>();
+  const [dataSource, setDataSource] = useState([]);
+  const [currentTlsCertificate, setCurrentTlsCertificate] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const getTlsCertificateList = async (): Promise<TlsCertificateResponse> => (getTlsCertificates());
-  const { loading, run, refresh } = useRequest(getTlsCertificateList, {
+  const { loading, run, refresh } = useRequest(getTlsCertificates, {
     manual: true,
-    onSuccess: (result: TlsCertificate[], params) => {
+    onSuccess: (result = []) => {
       const _dataSource = result || [];
       _dataSource.forEach(i => {
         i.domains && Array.isArray(i.domains) && i.domains.length > 0 && (i.domains = i.domains.join(', '))
@@ -80,8 +69,8 @@ const TlsCertificateList: React.FC = () => {
     run();
   }, []);
 
-  const onEditDrawer = (tlsCertificate: TlsCertificate) => {
-    setCurrentTlsCertificate(tlsCertificate);
+  const onEditDrawer = (cert) => {
+    setCurrentTlsCertificate(cert);
     setOpenDrawer(true);
   };
 
@@ -92,39 +81,38 @@ const TlsCertificateList: React.FC = () => {
 
   const handleDrawerOK = async () => {
     try {
-      const values: TlsCertificate = formRef.current && await formRef.current.handleSubmit();
-      const { name, cert, key } = values;
-      const data = { name, cert, key };
+      const values = formRef.current ? await formRef.current.handleSubmit() : {};
       if (currentTlsCertificate) {
-        await updateTlsCertificate({ version: currentTlsCertificate.version, ...data } as TlsCertificate);
+        await updateTlsCertificate({ version: currentTlsCertificate.version, ...values });
       } else {
-        await addTlsCertificate(data as TlsCertificate);
+        await addTlsCertificate(values);
       }
+
       setOpenDrawer(false);
+      formRef.current && formRef.current.reset();
       refresh();
     } catch (errInfo) {
-      console.log('Save failed:', errInfo);
+      console.log('Save failed: ', errInfo);
     }
   };
 
   const handleDrawerCancel = () => {
     setOpenDrawer(false);
+    formRef.current && formRef.current.reset();
     setCurrentTlsCertificate(null);
   };
 
-  const onShowModal = (tlsCertificate: TlsCertificate) => {
-    setCurrentTlsCertificate(tlsCertificate);
+  const onShowModal = (cert) => {
+    setCurrentTlsCertificate(cert);
     setOpenModal(true);
   };
 
   const handleModalOk = async () => {
-    if (!currentTlsCertificate) {
-      return;
-    }
     setConfirmLoading(true);
     await deleteTlsCertificate(currentTlsCertificate.name);
     setConfirmLoading(false);
     setOpenModal(false);
+    setCurrentTlsCertificate(null);
     refresh();
   };
 
@@ -156,10 +144,9 @@ const TlsCertificateList: React.FC = () => {
             </Button>
           </Col>
           <Col span={20} style={{ textAlign: 'right' }}>
-            <Button
-              icon={<RedoOutlined />}
-              onClick={refresh}
-            />
+            <Button onClick={refresh}>
+              <RotateCcw size={16} />
+            </Button>
           </Col>
         </Row>
       </Form>
@@ -168,10 +155,22 @@ const TlsCertificateList: React.FC = () => {
         dataSource={dataSource}
         columns={columns}
         pagination={false}
-        rowKey="name"
       />
+      <Drawer
+        title={t(currentTlsCertificate ? 'tlsCertificate.editTlsCertificate' : 'tlsCertificate.createTlsCertificate')}
+        placement="right"
+        width={660}
+        onClose={handleDrawerCancel}
+        open={openDrawer}
+        extra={{
+          }
+        }
+      >
+        {/* @ts-ignore */}
+        <TlsCertificateForm ref={formRef} value={currentTlsCertificate} />
+      </Drawer>
       <Modal
-        title={<div><ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />{t('misc.delete')}</div>}
+        title={<div><TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />{t('misc.delete')}</div>}
         open={openModal}
         onOk={handleModalOk}
         confirmLoading={confirmLoading}
@@ -185,23 +184,6 @@ const TlsCertificateList: React.FC = () => {
           </Trans>
         </p>
       </Modal>
-      <Drawer
-        title={t(currentTlsCertificate ? 'tlsCertificate.editTlsCertificate' : 'tlsCertificate.createTlsCertificate')}
-        placement="right"
-        width={660}
-        onClose={handleDrawerCancel}
-        open={openDrawer}
-        extra={
-          <Space>
-            <Button onClick={handleDrawerCancel}>{t('misc.cancel')}</Button>
-            <Button type="primary" onClick={handleDrawerOK}>
-              {t('misc.confirm')}
-            </Button>
-          </Space>
-        }
-      >
-        <TlsCertificateForm ref={formRef} value={currentTlsCertificate} />
-      </Drawer>
     </PageContainer>
   );
 };

@@ -2,7 +2,7 @@ import { WasmPluginData } from '@/interfaces/route';
 import { Empty, Row, Collapse } from 'antd';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CaretRightOutlined } from '@ant-design/icons';
+import { ChevronRight } from 'lucide-react';
 import styles from './index.module.css';
 
 const { Panel } = Collapse;
@@ -45,9 +45,10 @@ const PluginCategory = (props: Props) => {
           expandIconPosition="start"
           bordered={false}
           expandIcon={({ isActive }) => (
-            <CaretRightOutlined
-              rotate={isActive ? 90 : 0}
-              style={{ fontSize: '12px', marginRight: '4px' }}
+            <ChevronRight
+              style={{ fontSize: '12px', marginRight: '4px', transition: 'transform 0.2s ease' }}
+              size={12}
+              className={isActive ? styles.rotate90 : ''}
             />
           )}
         >

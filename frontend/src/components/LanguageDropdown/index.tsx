@@ -7,13 +7,15 @@ interface LanguageDropdownProps {}
 
 const LanguageDropdown: React.FC<LanguageDropdownProps> = () => {
   const handleMenuClick = useCallback(() => {
-    const key = (lngs.find((l) => l.code !== i18n.language) || lngs[0]).code;
-    i18n.changeLanguage(key);
-    localStorage.setItem('i18nextLng', key);
+    const currentIndex = lngs.findIndex((l) => l.code === i18n.language);
+    const nextIndex = (currentIndex + 1) % lngs.length;
+    const nextCode = lngs[nextIndex].code;
+    i18n.changeLanguage(nextCode);
+    localStorage.setItem('i18nextLng', nextCode);
   }, []);
 
   const currentLanguage = i18n.language;
-  const languageConfig = lngs.find((l) => l.code !== currentLanguage);
+  const languageConfig = lngs.find((l) => l.code === currentLanguage) || lngs[0];
 
   return (
     <span className={`${styles['language-switch']}`} onClick={handleMenuClick}>

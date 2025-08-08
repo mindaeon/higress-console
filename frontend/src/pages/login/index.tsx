@@ -4,7 +4,7 @@ import { LOGIN_PROMPT, SYSTEM_INITIALIZED } from '@/interfaces/config';
 import type { LoginParams, UserInfo } from '@/interfaces/user';
 import { login } from '@/services';
 import store from '@/store';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { User, Lock } from 'lucide-react';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { Alert, message } from 'antd';
 import { history, useAuth, useNavigate } from 'ice';
@@ -80,7 +80,7 @@ const Login: React.FC = () => {
           name="username"
           fieldProps={{
             size: 'large',
-            prefix: <UserOutlined className={'prefixIcon'} />,
+            prefix: <User size={16} className={'prefixIcon'} />,
           }}
           placeholder={t('login.usernamePlaceholder')}
           rules={[
@@ -94,7 +94,7 @@ const Login: React.FC = () => {
           name="password"
           fieldProps={{
             size: 'large',
-            prefix: <LockOutlined className={'prefixIcon'} />,
+            prefix: <Lock size={16} className={'prefixIcon'} />,
           }}
           placeholder={t('login.passwordPlaceholder')}
           rules={[

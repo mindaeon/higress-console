@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { Consumer, ServiceSourceFormProps as FormProps } from '@/interfaces/consumer';
 import { addConsumer, deleteConsumer, getConsumers, updateConsumer } from '@/services/consumer';
-import { ExclamationCircleOutlined, RedoOutlined } from '@ant-design/icons';
+import { TriangleAlert, RotateCcw } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Drawer, Form, message, Modal, Row, Space, Table, Tag } from 'antd';
@@ -190,7 +190,7 @@ const ConsumerList: React.FC = () => {
           </Col>
           <Col span={20} style={{ textAlign: 'right' }}>
             <Button
-              icon={<RedoOutlined />}
+              children={<RotateCcw size={16} />}
               onClick={refresh}
             />
           </Col>
@@ -220,7 +220,7 @@ const ConsumerList: React.FC = () => {
         <ConsumerForm ref={formRef} value={currentConsumer} />
       </Drawer>
       <Modal
-        title={<div><ExclamationCircleOutlined style={{ color: '#ffde5c', marginRight: 8 }} />{t('misc.delete')}</div>}
+        title={<div><TriangleAlert style={{ color: '#ffde5c', marginRight: 8 }} size={16} />{t('misc.delete')}</div>}
         open={openModal}
         onOk={handleModalOk}
         confirmLoading={confirmLoading}

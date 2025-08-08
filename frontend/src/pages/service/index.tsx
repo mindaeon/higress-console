@@ -1,7 +1,7 @@
 import { OptionItem } from '@/interfaces/common';
 import { Service, serviceToString } from '@/interfaces/service';
 import { getGatewayServices } from '@/services';
-import { RedoOutlined } from '@ant-design/icons';
+import { RotateCcw } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, Form, Input, Row, Select, Table } from 'antd';
@@ -161,7 +161,7 @@ const ServiceList: React.FC = () => {
               {t('misc.reset')}
             </Button>
             <Button
-              icon={<RedoOutlined />}
+              children={<RotateCcw size={16} />}
               onClick={refresh}
             />
           </Col>

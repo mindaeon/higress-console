@@ -1,6 +1,6 @@
 import { WasmPluginData } from '@/interfaces/wasm-plugin';
 import { createWasmPlugin, deleteWasmPlugin, getGatewayRouteDetail, updateWasmPlugin } from '@/services';
-import { RedoOutlined } from '@ant-design/icons';
+import { RotateCcw } from 'lucide-react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'ahooks';
 import { Button, Col, PageHeader, Row, Spin, message } from 'antd';
@@ -131,7 +131,7 @@ export default function RouterConfig() {
               </Col>
               <Col span={20} style={{ textAlign: 'right' }}>
                 <Button
-                  icon={<RedoOutlined />}
+                  children={<RotateCcw size={16} />}
                   onClick={() => {
                     listRef.current?.refresh();
                   }}

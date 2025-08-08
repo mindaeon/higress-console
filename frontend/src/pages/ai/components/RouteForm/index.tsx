@@ -6,7 +6,8 @@ import FactorGroup from '@/pages/route/components/FactorGroup';
 import { getGatewayDomains } from '@/services';
 import { getConsumers } from '@/services/consumer';
 import { getLlmProviders } from '@/services/llm-provider';
-import { MinusCircleOutlined, PlusOutlined, RedoOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
+import { MinusCircle, Plus } from 'lucide-react';
 import { useRequest } from 'ahooks';
 import { Button, Checkbox, Empty, Form, Input, InputNumber, Select, Space, Switch } from 'antd';
 import { uniqueId } from "lodash";
@@ -378,7 +379,7 @@ const AiRouteForm: React.FC = forwardRef((props: { value: any }, ref) => {
                               </Form.Item>
                             </td>
                             <td className="ant-table-cell">
-                              <MinusCircleOutlined onClick={() => remove(name)} />
+                              <MinusCircle size={16} onClick={() => remove(name)} />
                             </td>
                           </tr>
                         )) || (
@@ -395,7 +396,7 @@ const AiRouteForm: React.FC = forwardRef((props: { value: any }, ref) => {
               </div>
 
               <div>
-                <Button type="dashed" block icon={<PlusOutlined />} onClick={() => add()}>{t("aiRoute.routeForm.addModelPredicate")}</Button>
+                <Button type="dashed" block icon={<Plus size={16} />} onClick={() => add()}>{t("aiRoute.routeForm.addModelPredicate")}</Button>
               </div>
             </>)
           }
@@ -471,7 +472,7 @@ const AiRouteForm: React.FC = forwardRef((props: { value: any }, ref) => {
                     {
                       fields.length > 1 &&
                       <Form.Item noStyle>
-                        <MinusCircleOutlined onClick={() => remove(name)} />
+                        <MinusCircle size={16} onClick={() => remove(name)} />
                       </Form.Item>
                     }
                   </Space>
@@ -480,9 +481,9 @@ const AiRouteForm: React.FC = forwardRef((props: { value: any }, ref) => {
                   <Button
                     type="dashed"
                     block
-                    icon={<PlusOutlined />}
-                    onClick={() => add()}
-                  >
+                    icon={<Plus size={16} />}
+                      onClick={() => add()}
+                    >
                     {/* 添加目标AI服务 */}{t("aiRoute.routeForm.addTargetService")}
                   </Button>
                 </div>

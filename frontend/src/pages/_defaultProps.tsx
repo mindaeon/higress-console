@@ -1,15 +1,4 @@
-import {
-  DashboardOutlined,
-  DeploymentUnitOutlined,
-  FullscreenExitOutlined,
-  GlobalOutlined,
-  RobotOutlined,
-  SafetyCertificateOutlined,
-  SettingOutlined,
-  UnorderedListOutlined,
-  UserOutlined,
-  WindowsOutlined,
-} from '@ant-design/icons';
+import { LayoutDashboard, Route as RouteIcon, Minimize2, List, Bot, Globe, ShieldCheck, Settings, User, Boxes } from 'lucide-react';
 
 export default {
   route: {
@@ -41,26 +30,26 @@ export default {
       {
         name: 'menu.dashboard',
         path: '/dashboard',
-        icon: <DashboardOutlined />,
+        icon: <LayoutDashboard size={16} />,
       },
       {
         name: 'menu.serviceSources',
         path: '/service-source',
-        icon: <FullscreenExitOutlined />,
+        icon: <Minimize2 size={16} />,
       },
       {
         name: 'menu.serviceList',
         path: '/service',
-        icon: <UnorderedListOutlined />,
+        icon: <List size={16} />,
       },
       {
         name: 'menu.routeConfig',
         path: '/route',
-        icon: <DeploymentUnitOutlined />,
+        icon: <RouteIcon size={16} />,
       },
       {
         name: 'menu.aiServiceManagement',
-        icon: <RobotOutlined />,
+        icon: <Bot size={16} />,
         children: [
           {
             name: 'menu.llmProviderManagement',
@@ -91,27 +80,27 @@ export default {
       {
         name: 'menu.domainManagement',
         path: '/domain',
-        icon: <GlobalOutlined />,
+        icon: <Globe size={16} />,
       },
       {
         name: 'menu.certManagement',
         path: '/tls-certificate',
-        icon: <SafetyCertificateOutlined />,
+        icon: <ShieldCheck size={16} />,
       },
       {
         name: 'menu.consumerManagement',
         path: '/consumer',
-        icon: <UserOutlined />,
+        icon: <User size={16} />,
       },
       {
         name: 'menu.pluginManagement',
         path: '/plugin',
-        icon: <WindowsOutlined />,
+        icon: <Boxes size={16} />,
       },
       {
         name: 'menu.systemSettings',
         path: '/system',
-        icon: <SettingOutlined />,
+        icon: <Settings size={16} />,
       },
     ],
   },

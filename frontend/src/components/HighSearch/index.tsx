@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, Input, Button, Form } from 'antd';
 import './index.scss';
-import { SearchOutlined } from '@ant-design/icons';
+import { Search } from 'lucide-react';
 
 interface SearchParam {
   label: string;
@@ -75,7 +75,7 @@ const HighSearch: React.FC<HighSearchProps> = ({
               onChange={(e) => onSearchValueChange(e.target.value)}
               onPressEnter={onSearch}
               allowClear
-              addonAfter={<Button type="text" size="small" onClick={onSearch} icon={<SearchOutlined />} />}
+              addonAfter={<Button type="text" size="small" onClick={onSearch} icon={<Search size={16} />} />}
             />
           )}
         </Form.Item>
